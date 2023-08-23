@@ -1,0 +1,18 @@
+[package]
+name = "external-tests"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = { version = "1", features = ["full"], optional = true }
+log = {version = "0.4.20", optional = true}
+json = {version = "0.12.3", optional = true}
+async-trait = {version = "0.1.73", optional = true}
+colored = {version = "2.0.4", optional = true}
+test-macros = {git = "https://github.com/frozenpeach-dev/debugger"}
+
+
+[features]
+main = ["tokio", "log", "json", "async-trait","colored"]
