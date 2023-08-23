@@ -122,20 +122,24 @@ pub fn main(
         use external_tests::instances;
     ));
 
+    // Symbol file
+    let symbol_file = get_attr(args.clone(), "symfile").unwrap();
+
+    // Bootable file
+    let bootable_file = get_attr(args.clone(), "bootfile").unwrap();
+
     // Compute GDB Path
     if let Some(path) = get_attr(args.clone(), "gdb") {
         stmts.push(quote!(
                 let mut runner = instances::Debugger::new(#path, vec![
-            "/Users/foxy/Documents/OS/bootloader/build/target/main/x86_64-fbios/release/main"
-                .to_string(),
-        ]);
+            #symbol_file.to_string()
+        ], #bootable_file);
             ))
     } else {
         stmts.push(quote!(
                 let mut runner = instances::Debugger::new("gdb", vec![
-            "/Users/foxy/Documents/OS/bootloader/build/target/main/x86_64-fbios/release/main"
-                .to_string(),
-        ]);
+            #symbol_file.to_string()
+        ], #bootable_file);
             ))
     }
 

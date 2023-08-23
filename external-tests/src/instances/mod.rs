@@ -280,10 +280,11 @@ pub struct Debugger {
     tests: Vec<String>,
     panic_ref: String,
     end_ref: String,
+    bootable : String
 }
 
 impl Debugger {
-    pub fn new(binary: &str, args: Vec<String>) -> Debugger {
+    pub fn new(binary: &str, args: Vec<String>, bootable : &str) -> Debugger {
         Self {
             binary: binary.to_string(),
             args,
@@ -300,6 +301,7 @@ impl Debugger {
             tests: vec![],
             panic_ref: String::new(),
             end_ref: String::new(),
+            bootable : bootable.to_string()
         }
     }
 
@@ -413,7 +415,7 @@ impl Debugger {
         let args = vec![
             "-s".to_string(),
             "-S".to_string(),
-            "/Users/foxy/Documents/OS/bootloader/build/boot.img".to_string(),
+            self.bootable.clone(),
         ];
         let qemu = Qemu::new("qemu-system-x86_64", args);
         self.vm = Some(qemu);

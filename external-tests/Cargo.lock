@@ -354,7 +354,6 @@ dependencies = [
 [[package]]
 name = "test-macros"
 version = "0.1.0"
-source = "git+https://github.com/frozenpeach-dev/debugger#35eb0b2ef57f59249427fe4bb4886eacf9a80232"
 dependencies = [
  "proc-macro2",
  "quote",
